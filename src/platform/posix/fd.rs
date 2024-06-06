@@ -78,7 +78,7 @@ impl IntoRawFd for Fd {
 impl Drop for Fd {
     fn drop(&mut self) {
         if self.close_fd_on_drop && self.inner >= 0 {
-            unsafe { libc::close(self.inner) };
+            unsafe { libc::fclose(self.inner) };
         }
     }
 }
